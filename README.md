@@ -1,4 +1,2 @@
-# Stalyn creative APP (React)
+# Investment APP (React)
 
-## Author
-- Christopher Ventura (cventura@hurrabit.com)
