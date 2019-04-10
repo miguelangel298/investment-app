@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Home.css';
 import { RouteComponentProps } from 'react-router';
 import User from 'src/core/entities/User';
+import RequireAuthComponent from 'src/components/require-auth/RequireAuthComponent';
 
 interface IHomeProps  extends RouteComponentProps {
   loading: boolean;
@@ -20,15 +21,11 @@ const homeDefaultProps: IHomeProps = {
   location: {} as any,
 };
 
-export default class Home extends React.PureComponent<IHomeProps> {
+export default class Home extends RequireAuthComponent<IHomeProps, {}> {
   static defaultProps = homeDefaultProps;
 
-  componentDidUpdate(prevProps: Readonly<IHomeProps>,
-                     prevState: Readonly<{}>, snapshot?: any): void {
-    if (prevProps.isAuthenticated && !this.props.isAuthenticated) {
-      // Logged out
-      this.props.history.push('/login');
-    }
+  componentDidUpdate(): void {
+    super.componentDidUpdate();
   }
 
   render() {
