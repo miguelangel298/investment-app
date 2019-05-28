@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import User from 'src/core/entities/User';
 
 interface AppBarProps {
+  children: React.ReactNode;
   title: string;
   isAuthenticated?: boolean;
   user: User;
@@ -37,6 +38,15 @@ export default class AppBar extends React.PureComponent<AppBarProps, AppBarState
   handleLogout = () => {
     this.props.onLogout();
     this.handleClose();
+  }
+
+  renderDrawer = () => {
+    const { isAuthenticated, children } = this.props;
+    return isAuthenticated ? (
+      <div>
+        { children }
+      </div>
+    )  : undefined;
   }
 
   renderSubMenu = () => {
@@ -94,11 +104,12 @@ export default class AppBar extends React.PureComponent<AppBarProps, AppBarState
     return (
       <MatAppBar position={'static'}>
         <Toolbar className={'container-fluid'}>
-          <Typography variant={'h6'} color={'inherit'}>
-            <Link to={'/'} className={'text-white'}>
-              {title}
-            </Link>
-          </Typography>
+          {this.renderDrawer()}
+            <Typography variant={'h6'} color={'inherit'}>
+              <Link to={'/'} className={'text-white'}>
+                {title}
+              </Link>
+            </Typography>
           <div className={'ml-auto'}>
             {this.renderSubMenu()}
           </div>

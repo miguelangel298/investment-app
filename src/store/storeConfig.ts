@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import reduxThunk from 'redux-thunk';
 import { IAuthenticationState } from 'src/store/states/AuthenticationState';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './reducers';
 
 export interface IAppState {
@@ -11,12 +12,15 @@ export interface IAppState {
 
 const persistConfig = {
   storage,
-  key: 'villavirtual_app',
+  key: 'investment_app',
   whitelist: ['auth'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
-const store = createStore<IAppState, any, any, any>(persistedReducer, applyMiddleware(reduxThunk));
+const store = createStore<IAppState, any, any, any>(persistedReducer,
+                                                    // tslint:disable-next-line:max-line-length
+                                                    composeWithDevTools(applyMiddleware(reduxThunk)));
+
 const persistor = persistStore(store);
 
 const storeConfig = {

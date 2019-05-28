@@ -67,7 +67,7 @@ export default class Login extends React.PureComponent<ILoginComponentProps, ILo
       return;
     }
     const { login } = this.props;
-    login({ email: username, password });
+    login({ username, password });
   }
 
   handleUsernameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {

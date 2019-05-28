@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export default class AuthenticationService {
   static async login(payload: LoginPayload) {
-    const { email, password } = payload;
+    const { username, password } = payload;
     try {
-      const axiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
-        email,
+      const axiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+        username,
         password,
       });
       return axiosResponse.data.session;
