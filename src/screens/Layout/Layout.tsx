@@ -4,15 +4,16 @@ import User from 'src/core/entities/User';
 import Footer from 'src/components/footer/Footer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import Drawer from '@material-ui/core/Drawer';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import List from '@material-ui/core/List';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import Drawer from 'src/screens/Layout/components/drawer';
+// import ChevronLeft from '@material-ui/icons/ChevronLeft';
+// import Drawer from '@material-ui/core/Drawer';
+// import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+// import List from '@material-ui/core/List';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import MailIcon from '@material-ui/icons/Mail';
+// import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 interface ILayoutProps {
   children?:  React.ReactElement<any>[] | React.ReactElement<any>;
@@ -64,30 +65,31 @@ export default class Layout extends React.PureComponent<ILayoutProps, ILayoutSta
             <MenuIcon />
           </IconButton>
         </AppBar>
-        <ClickAwayListener onClickAway={this.handleDrawerClose}>
-          <Drawer
-            variant="persistent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            open={this.state.drawerIsOpen}
-          >
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeft />
-              </IconButton>
-            </div>
-            <List>
-              <ListItem button onClick={this.handleClick}>
-                <ListItemIcon>
-                  <MailIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-            </List>
-          </Drawer>
-        </ClickAwayListener>
+        <Drawer onClose={this.handleDrawerClose} isOpen={} onClick={}/>
+        {/*<ClickAwayListener onClickAway={this.handleDrawerClose}>*/}
+          {/*<Drawer*/}
+            {/*variant="persistent"*/}
+            {/*classes={{*/}
+              {/*paper: classes.drawerPaper,*/}
+            {/*}}*/}
+            {/*open={this.state.drawerIsOpen}*/}
+          {/*>*/}
+            {/*<div className={classes.drawerHeader}>*/}
+              {/*<IconButton onClick={this.handleDrawerClose}>*/}
+                {/*<ChevronLeft />*/}
+              {/*</IconButton>*/}
+            {/*</div>*/}
+            {/*<List>*/}
+              {/*<ListItem button onClick={this.handleClick}>*/}
+                {/*<ListItemIcon>*/}
+                  {/*<MailIcon/>*/}
+                {/*</ListItemIcon>*/}
+                {/*<ListItemText primary="Inbox" />*/}
+                {/*{open ? <ExpandLess /> : <ExpandMore />}*/}
+              {/*</ListItem>*/}
+            {/*</List>*/}
+          {/*</Drawer>*/}
+        {/*</ClickAwayListener>*/}
         <div className={'my-5'}>
           {children}
         </div>
